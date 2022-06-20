@@ -1,4 +1,4 @@
-# condajupyter-env
+# conda-jupyter-env
 
 A repo template for maintaining a conda env and running jupyter-notebook
 
@@ -17,6 +17,7 @@ A repo template for maintaining a conda env and running jupyter-notebook
     - accept connections to jupyter over the network
     - use a self-signed ssl certificate for https
     - maybe useful to set a password
+    - save log to file
 
 ## Usage
 
@@ -52,7 +53,7 @@ A repo template for maintaining a conda env and running jupyter-notebook
 
   - cert and key files to `./jupyter.pem`
   - ip `0.0.0.0` to listens all network connections
-  - notebook directory to [`./ipynb`](ipynb)
+  - notebook directory to [`./ipynb`](#notebook-directory-ipynb)
   - no starting a browser
   - (__NOTE__ password is unset)
 
@@ -66,5 +67,7 @@ A repo template for maintaining a conda env and running jupyter-notebook
 
 * `less ./jupyter_notebook.log` to view the log
 
+### notebook directory [`ipynb`](ipynb)
 
+* [`0pagesetup.ipynb`](ipynb/0pagesetup.ipynb) - a common notebook page setup
 
