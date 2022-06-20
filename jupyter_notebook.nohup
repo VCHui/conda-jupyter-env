@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+ENVNAME=$(head -1 ./req.yml | cut -d\  -f2)
+PEM=./jupyter.pem
+LOG=./jupyter_notebook.log
+
+if [ "$(which conda)" = "" ]
+then
+    echo "conda not found!"
+    exit 1
+fi
+
+if ! $(jupyter kernelspec list | grep -q "^  ${ENVNAME}")
+then
+    ./jupyter_setup_kernel.sh
+    echo "require to re-run $0"
+    exit 1
+fi
+
+if [ \! -f ${PEM} ]
+then
+    ./jupyter_setup_ssl.sh
+    echo "require to re-run $0"
+    exit 1
+fi
+
+if [ $# -eq 0 ]
+then
+    echo "Usage $0 [start|stop|status]"
+    exit 1
+fi
+
+pid=$(pgrep -u ${USER} -f jupyter)
+
+case $1 in
+    status)
+	if [ "${pid}" != "" ]
+	then
+	    ps -ww ${pid}
+	else
+	    echo "no running jupyter-notebook!"
+	fi
+        ;;
+    stop)
+        pkill -9 -u ${USER} -f jupyter
+	echo "jupyter-notebook stopped."
+        $0 status
+        ;;
+    start)
+	if [ "${pid}" == "" ]
+	then
+            JUPYTER_CONFIG_DIR=. nohup jupyter-notebook > ${LOG} 2>&1 &
+	fi
+	$0 status
+        ;;
+    *)
+        $0
+        ;;
+esac
