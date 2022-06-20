@@ -1,0 +1,16 @@
+name: template
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  ## base:
+  - python
+  - scipy
+  - matplotlib
+  - pygments
+  ## notebook:
+  - notebook
+  - ipywidgets
+  - pylint
+  - jupytext
+  #- graphviz
