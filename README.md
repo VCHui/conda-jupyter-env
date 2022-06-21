@@ -71,3 +71,12 @@ A repo template for maintaining a conda env and running jupyter-notebook
 
 * [`0pagesetup.ipynb`](ipynb/0pagesetup.ipynb) - a common notebook page setup
 
+## Apply the template to start a new repo
+
+* _export_ this repo to `${another_directory}`
+
+  ```shell
+  git checkout-index --all --prefix=${another_directory}/
+  ```
+
+* update this `REAMDME.md`
