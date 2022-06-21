@@ -4,11 +4,12 @@ A repo template for maintaining a conda env and running jupyter-notebook
 
 ## Purpose for development only (not multi-user)
 
-* [`env_create.sh`](#conda-env-createremove) to remove and create the _env_ in one step
-  
+* [`env_create.sh`](#conda-env-createremove) to remove and
+  create the _env_ in one step
+
 * [`jupyter_setup_kernel.sh`](#jupyter-kernel-notebook-config) to
   install a separate kernel for the _env_
-  
+
   - enable jupyter notebook to use alternative kernels of different _envs_
 
 * [`jupyter notebook.nohup`](#run-jupyter-notebook-like-a-system-service)
@@ -30,24 +31,27 @@ A repo template for maintaining a conda env and running jupyter-notebook
   - change the name `template` for the new _env_
   - update the package list
 
-* run [`./env_create.sh`](env_create.sh) to create the new _env_, it nest executes
+* run [`./env_create.sh`](env_create.sh) to create the new _env_,
+  it nest executes
 
   - extraction of the _env_ name from [`./req.yml`](req.yml)
 
-  - [`./env_remove.sh`](env_remove.sh) to remove the current _env_, if exists
+  - [`./env_remove.sh`](env_remove.sh) to remove
+    the current _env_, if exists
 
     - [`./jupter_remove_kernel.sh`](jupyter_remove.sh) to remove
       the _env_ jupyter kernel, if installed
-      
+
 ### jupyter kernel notebook config
- 
+
 * in the new _env_
 
 * run [`./jupyter_setup_kernel.sh`](jupyter_setup_kerne.sh) to
   install a jupyter kernel for the _env_, it nest executes
   - [`./jupter_setup_ssl.sh`](jupyter_setup_ssh.sh) to create
-    a self-signed ssl cert file and key `./jupyter.pem` for jupyter notebook
-   
+    a self-signed ssl cert file and key `./jupyter.pem` for
+	jupyter notebook
+
 * edit [`./jupyter_notebook_config.py`](jupyter_notebook_config.py)
   if needed; the config sets
 
