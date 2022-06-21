@@ -2,7 +2,17 @@
 
 A repo template for maintaining a conda env and running jupyter-notebook
 
-## Purpose for development only (not multi-user)
+## Apply the template to start a new repo
+
+* _export_ this repo to `${another_directory}`
+
+  ```shell
+  git checkout-index --all --prefix=${another_directory}/
+  ```
+
+* update this `REAMDME.md`
+
+## The _env_ setup is for development only (not multi-user)
 
 * [`env_create.sh`](#conda-env-createremove) to remove and
   create the _env_ in one step
@@ -20,7 +30,7 @@ A repo template for maintaining a conda env and running jupyter-notebook
     - maybe useful to set a password
     - save log to file
 
-## Usage
+## Using the setup
 
 ### conda env create/remove
 
@@ -74,13 +84,3 @@ A repo template for maintaining a conda env and running jupyter-notebook
 ### notebook directory [`ipynb`](ipynb)
 
 * [`0pagesetup.ipynb`](ipynb/0pagesetup.ipynb) - a common notebook page setup
-
-## Apply the template to start a new repo
-
-* _export_ this repo to `${another_directory}`
-
-  ```shell
-  git checkout-index --all --prefix=${another_directory}/
-  ```
-
-* update this `REAMDME.md`
