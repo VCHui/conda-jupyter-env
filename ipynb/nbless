@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ "$(basename $(which jupyter))" = "jupyter" -a \
+     "$(basename $(which pygmentize))" = "pygmentize" ]
+then
+    jupyter nbconvert $1 --to python --stdout |\
+    pygmentize -l python -O style=solarized-dark |\
+    less
+else
+    less $1
+fi
