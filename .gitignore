@@ -2,6 +2,7 @@
 *.DS_Store
 
 # repo specific
+jupyter_notebook_config.py
 jupyter.pem
 migrated
 
