@@ -5,3 +5,4 @@ c.NotebookApp.ip = '0.0.0.0'
 c.NotebookApp.notebook_dir = os.path.abspath('ipynb')
 c.NotebookApp.open_browser = False
 c.NotebookApp.password = ""
+c.NotebookApp.token = ""
