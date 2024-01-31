@@ -8,7 +8,8 @@ fi
 
 NBV=nb6
 LOG=${NBV}.log
-CFG=${NBV}_config.py
+CFG=jupyter_notebook_config.py
+EXE=${CONDA_PREFIX}/envs/${NBV}/bin/jupyter-notebook
 
 if [ $# -eq 0 ]
 then
@@ -18,8 +19,7 @@ fi
 
 case $1 in
     start)
-	nohup conda run -n ${NBV} --live-stream \
-	    jupyter-notebook --config=./${CFG} > ${LOG} 2>&1 &
+	nohup ${EXE} --config=./${CFG} > ${LOG} 2>&1 &
         ;;
     stop)
         pkill -9 -u ${USER} -f jupyter
