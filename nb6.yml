@@ -1,0 +1,17 @@
+name: nb6
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - jupyter_server
+  # notebook==5.7.8 # nb5
+  - notebook==6.5.4 # nb6
+  # notebook>=7.0   # nb7
+  - ipywidgets==7.6.5 # nb5,nb6
+  # ipywidgets==8.0.4 # breaks voila
+  - jupyter_contrib_nbextensions
+  - jupyter_nbextensions_configurator=0.4.1 # nb5,nb6
+  - jupytext==1.14.5 # nb5,nb6
+  - voila==0.3.7 # nb6
+  - rise==5.7.1 # nb6
+  - itsdangerous

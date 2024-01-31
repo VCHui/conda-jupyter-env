@@ -1,0 +1,12 @@
+name: nb7
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - notebook>=7.0
+  - jupyter_server
+  - ipywidgets
+  - jupytext
+  - jupyter-collaboration
+  - nodejs
+  - itsdangerous
