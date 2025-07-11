@@ -1,0 +1,35 @@
+# -*- Makefile -*-
+
+SHELL = bash
+
+# all:
+
+date:
+	@echo "## $(shell date +'%Y-%m-%d %H:%M')"
+
+install: date
+	@conda env create -n $(ENV) -q --file ./$(ENV).yml
+	@make -s date
+
+uninstall:
+	@conda remove -n $(ENV) -y --all
+
+install.%: ENV=$*
+install.%:
+	conda env list | grep -q $(ENV) || make -s install ENV=$(ENV)
+
+uninstall.%: ENV=$*
+uninstall.%:
+	conda env list | grep -q $(ENV) && make -s uninstall ENV=$(ENV)
+
+pkgsizes:
+	@jq '[.size,input_filename] | join(" ")' \
+		$${CONDA_PREFIX}/envs/$(ENV)/conda-meta/*.json |\
+		sed -e 's/\/.*meta\///g' -e 's/^"//g' -e 's/.json"$$//g' |\
+		sort -n | column -t
+
+pkgsizes.%: ENV=$*
+pkgsizes.%:
+	conda env list | grep -q $(ENV) && make -s pkgsizes ENV=$(ENV)
+
+.PHONY: date install uninstall pkgsizes
