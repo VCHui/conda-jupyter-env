@@ -7,7 +7,8 @@ JENV = nb6 # jupyter-notebook server environment
 all:
 	@echo "$(ENV) options"
 	@echo
-	@grep -hA1 "^[[:alnum:]-]*:" ./Makefile* | sed -e "s/^/  /g"
+	@grep -hA1 "^[[:alnum:]]?*[.[:alnum:]-]*:" ./Makefile* |\
+		sed -e "s/^/  /g"
 	@echo
 
 grepconf:
@@ -52,4 +53,4 @@ kernel-install.%:
 .PHONY: grepconf list jupyter-versions \
 	kernel-list kernel-remove kernel-install
 
-include Makefile.condaenv
+include Makefile.condaenv Makefile.pem
