@@ -6,8 +6,8 @@ then
     exit 1
 fi
 
-LOG=${NBV}.log
 JENV=nb6
+LOG=jupyter.service.log
 CFG=jupyter_notebook_config.py
 EXE=${CONDA_PREFIX}/envs/${JENV}/bin/jupyter-notebook
 
