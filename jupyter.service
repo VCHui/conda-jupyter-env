@@ -1,0 +1,18 @@
+# ~/.config/systemd/user/jupyter.service
+[Unit]
+Description=jupyter-notebook
+After=network.target
+
+[Service]
+# User=%u
+# Group=%g
+Type=simple
+WorkingDirectory=%h/opt/jupyter
+Environment=PATH=%h/opt/miniconda3/envs/nb6/bin
+ExecStart=%h/opt/miniconda3/envs/nb6/bin/jupyter-notebook --config=%h/opt/jupyter/nb6_config.py
+StandardOutput=file:%h/opt/jupyter/jupyter.service.log
+# Restart=always
+# RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
