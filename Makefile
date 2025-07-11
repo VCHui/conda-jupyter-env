@@ -12,13 +12,6 @@ grepconf:
 	@# usage: cat config.py | make grepconf
 	@egrep -v '^$$|^#'
 
-versions:
-	conda run -n $(ENV) jupyter --version
-
-versions.%: ENV=$*
-versions.%:
-	@make -s versions ENV=$(ENV)
-
 list:
 	conda list -n $(ENV) |\
 		egrep 'ext|jupytext|widget|voila' |\
@@ -27,6 +20,13 @@ list:
 list.%: ENV=$*
 list.%:
 	@make -s list ENV=$(ENV)
+
+jupyter-versions:
+	conda run -n $(ENV) jupyter --version
+
+jupyter-versions.%: ENV=$*
+jupyter-versions.%:
+	@make -s jupyter-versions ENV=$(ENV)
 
 kernel-list:
 	conda run -n $(JENV) jupyter-kernelspec list
