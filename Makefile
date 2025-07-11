@@ -1,40 +1,48 @@
 SHELL = bash
 
-# ENV = jupyter
+JENV = nb6 # jupyter-notebook server environment
 
 all:
 	@echo "$(ENV) options"
 	@echo
-	@grep -A1 "^\w*:" ./Makefile | sed -e "s/^/  /g"
+	@grep -A1 "^[[:alnum:]-]*:" ./Makefile | sed -e "s/^/  /g"
 	@echo
 
-install:
-	conda env create -n $(ENV) -q --file ./$(ENV).yml
-
-uninstall:
-	conda remove -n $(ENV) -y --all
+grepconf:
+	@# usage: cat config.py | make grepconf
+	@egrep -v '^$$|^#'
 
 versions:
 	conda run -n $(ENV) jupyter --version
 
-list:
-	conda list -n $(ENV) | egrep 'ext|jupytext|widget|voila'
-
-grepconf:
-	egrep -v '^$$|^#'
-
-install.%: ENV=$*
-install.%:
-	make uninstall ENV=$(ENV) && make install ENV=$(ENV)
-
-uninstall.%: ENV=$*
-uninstall.%:
-	make uninstall ENV=$(ENV)
-
 versions.%: ENV=$*
 versions.%:
-	make versions ENV=$(ENV)
+	@make -s versions ENV=$(ENV)
+
+list:
+	conda list -n $(ENV) |\
+		egrep 'ext|jupytext|widget|voila' |\
+		sort -h
 
 list.%: ENV=$*
 list.%:
-	make list ENV=$(ENV)
+	@make -s list ENV=$(ENV)
+
+kernel-list:
+	conda run -n $(JENV) jupyter-kernelspec list
+
+kernel-remove:
+	conda run -n $(JENV) jupyter-kernelspec remove \
+		--log-level=INFO -y -f $(ENV)
+
+kernel-remove.%: ENV=$*
+kernel-remove.%:
+	@make -s kernel-remove ENV=$(ENV)
+
+kernel-install:
+	conda run -n $(ENV) python -m ipykernel \
+		install --user --name $(ENV)
+
+kernel-install.%: ENV=$*
+kernel-install.%:
+	@make -s kernel-install ENV=$(ENV)
