@@ -6,10 +6,10 @@ then
     exit 1
 fi
 
-NBV=nb6
 LOG=${NBV}.log
+JENV=nb6
 CFG=jupyter_notebook_config.py
-EXE=${CONDA_PREFIX}/envs/${NBV}/bin/jupyter-notebook
+EXE=${CONDA_PREFIX}/envs/${JENV}/bin/jupyter-notebook
 
 if [ $# -eq 0 ]
 then
