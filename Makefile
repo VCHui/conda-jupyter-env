@@ -1,3 +1,5 @@
+# -*- Makefile -*-
+
 SHELL = bash
 
 JENV = nb6 # jupyter-notebook server environment
@@ -5,7 +7,7 @@ JENV = nb6 # jupyter-notebook server environment
 all:
 	@echo "$(ENV) options"
 	@echo
-	@grep -A1 "^[[:alnum:]-]*:" ./Makefile | sed -e "s/^/  /g"
+	@grep -hA1 "^[[:alnum:]-]*:" ./Makefile* | sed -e "s/^/  /g"
 	@echo
 
 grepconf:
@@ -46,3 +48,8 @@ kernel-install:
 kernel-install.%: ENV=$*
 kernel-install.%:
 	@make -s kernel-install ENV=$(ENV)
+
+.PHONY: grepconf list jupyter-versions \
+	kernel-list kernel-remove kernel-install
+
+include Makefile.condaenv
