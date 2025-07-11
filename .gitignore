@@ -3,6 +3,7 @@
 
 # repo specific
 jupyter_notebook_config.py
+ipynb/
 jupyter.pem
 migrated
 
